@@ -1,3 +1,4 @@
 view posts
 add post
+view post detail
 
