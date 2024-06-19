@@ -1,0 +1,29 @@
+name: Close Issues on Develop Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  close-issues:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Close related issues
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const issues = /close #(\d+)/g;
+            const body = context.payload.pull_request.body;
+            let match;
+            while ((match = issues.exec(body)) !== null) {
+              const issue_number = match[1];
+              github.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue_number,
+                state: 'closed'
+              });
+            }
+
