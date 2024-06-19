@@ -1,4 +1,1 @@
-view posts
-add post
-view post detail
-
+This page is post list
