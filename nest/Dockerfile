@@ -9,12 +9,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the application dependencies
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Copy the rest of the application files
 COPY . .
 
 # Build the NestJS application
+RUN npm install -g @nestjs/cli
 RUN npm run build
 
 # 5️⃣ pm2 글로벌 설치
