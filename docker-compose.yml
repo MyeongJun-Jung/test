@@ -38,6 +38,7 @@ services:
     volumes:
       - ./nest:/app # 코드 변경 시 자동 반영 (개발용)
       - /app/dist
+      - /app/node_modules
     networks:
       - benchnet
   express_test:
@@ -49,6 +50,8 @@ services:
       - "5002:3000"
     volumes:
       - ./express:/app # 코드 변경 시 자동 반영 (개발용)
+      - /app/dist
+      - /app/node_modules
     networks:
       - benchnet
 networks:
