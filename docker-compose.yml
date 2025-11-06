@@ -1,0 +1,56 @@
+services:
+  # postgres:
+  #   image: postgres:15
+  #   container_name: pg_bench
+  #   environment:
+  #     POSTGRES_USER: bench
+  #     POSTGRES_PASSWORD: benchpw
+  #     POSTGRES_DB: benchdb
+  #   ports:
+  #     - "5432:5432"        # 로컬에서도 접속 원하면 유지, 내부만 쓰면 제거해도 됨
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U bench -d benchdb"]
+  #     interval: 5s
+  #     timeout: 3s
+  #     retries: 10
+  #   networks:
+  #     - benchnet
+  fastapi_test:
+    build:
+      context: ./fastapi-test
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
+    networks:
+      - benchnet
+  nestjs_test:
+    build:
+      context: ./nest
+      dockerfile: Dockerfile
+    container_name: nestjs_app
+    ports:
+      - "5001:3000"
+    volumes:
+      - ./nest:/app # 코드 변경 시 자동 반영 (개발용)
+      - /app/dist
+    networks:
+      - benchnet
+  express_test:
+    build:
+      context: ./express
+      dockerfile: Dockerfile
+    container_name: express_app
+    ports:
+      - "5002:3000"
+    volumes:
+      - ./express:/app # 코드 변경 시 자동 반영 (개발용)
+    networks:
+      - benchnet
+networks:
+  benchnet:
+    driver: bridge
