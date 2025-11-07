@@ -17,17 +17,19 @@ services:
   #     retries: 10
   #   networks:
   #     - benchnet
-  # fastapi_test:
-  #   build:
-  #     context: ./fastapi-test
-  #     dockerfile: Dockerfile
-  #   container_name: fastapi_app
-  #   ports:
-  #     - "5000:8000"
-  #   volumes:
-  #     - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
-  #   networks:
-  #     - benchnet
+  fastapi_test:
+    build:
+      context: ./fastapi-test
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    env_file:
+      - .env
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
+    networks:
+      - benchnet
   # nestjs_test:
   #   build:
   #     context: ./nest
@@ -54,18 +56,18 @@ services:
   #     - /app/node_modules
   #   networks:
   #     - benchnet
-  spring_test:
-    build:
-      context: ./demo
-      dockerfile: Dockerfile
-    container_name: spring_app
-    ports:
-      - "5003:8080"
-    volumes:
-      - ./demo:/app # 코드 변경 시 자동 반영 (개발용)
-      - /app/build
-    networks:
-      - benchnet
+  # spring_test:
+  #   build:
+  #     context: ./demo
+  #     dockerfile: Dockerfile
+  #   container_name: spring_app
+  #   ports:
+  #     - "5003:8080"
+  #   volumes:
+  #     - ./demo:/app # 코드 변경 시 자동 반영 (개발용)
+  #     - /app/build
+  #   networks:
+  #     - benchnet
 networks:
   benchnet:
     driver: bridge
