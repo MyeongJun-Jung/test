@@ -17,41 +17,53 @@ services:
   #     retries: 10
   #   networks:
   #     - benchnet
-  fastapi_test:
+  # fastapi_test:
+  #   build:
+  #     context: ./fastapi-test
+  #     dockerfile: Dockerfile
+  #   container_name: fastapi_app
+  #   ports:
+  #     - "5000:8000"
+  #   volumes:
+  #     - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
+  #   networks:
+  #     - benchnet
+  # nestjs_test:
+  #   build:
+  #     context: ./nest
+  #     dockerfile: Dockerfile
+  #   container_name: nestjs_app
+  #   ports:
+  #     - "5001:3000"
+  #   volumes:
+  #     - ./nest:/app # 코드 변경 시 자동 반영 (개발용)
+  #     - /app/dist
+  #     - /app/node_modules
+  #   networks:
+  #     - benchnet
+  # express_test:
+  #   build:
+  #     context: ./express
+  #     dockerfile: Dockerfile
+  #   container_name: express_app
+  #   ports:
+  #     - "5002:3000"
+  #   volumes:
+  #     - ./express:/app # 코드 변경 시 자동 반영 (개발용)
+  #     - /app/dist
+  #     - /app/node_modules
+  #   networks:
+  #     - benchnet
+  spring_test:
     build:
-      context: ./fastapi-test
+      context: ./demo
       dockerfile: Dockerfile
-    container_name: fastapi_app
+    container_name: spring_app
     ports:
-      - "5000:8000"
+      - "5003:8080"
     volumes:
-      - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
-    networks:
-      - benchnet
-  nestjs_test:
-    build:
-      context: ./nest
-      dockerfile: Dockerfile
-    container_name: nestjs_app
-    ports:
-      - "5001:3000"
-    volumes:
-      - ./nest:/app # 코드 변경 시 자동 반영 (개발용)
-      - /app/dist
-      - /app/node_modules
-    networks:
-      - benchnet
-  express_test:
-    build:
-      context: ./express
-      dockerfile: Dockerfile
-    container_name: express_app
-    ports:
-      - "5002:3000"
-    volumes:
-      - ./express:/app # 코드 변경 시 자동 반영 (개발용)
-      - /app/dist
-      - /app/node_modules
+      - ./demo:/app # 코드 변경 시 자동 반영 (개발용)
+      - /app/build
     networks:
       - benchnet
 networks:

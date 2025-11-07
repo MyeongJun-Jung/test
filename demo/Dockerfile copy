@@ -1,0 +1,5 @@
+FROM eclipse-temurin:21-jdk
+WORKDIR /workspace
+
+# 쉘 유지를 위해 기본 명령을 tail로 고정
+CMD ["tail", "-f", "/dev/null"]
