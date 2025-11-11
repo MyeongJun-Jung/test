@@ -15,6 +15,7 @@ WORKDIR /app
 
 # ✅ 정확한 빌드 결과 복사
 COPY --from=builder /app/server /app/server
+COPY static ./static
 
 # ✅ 실행 권한 보장 (보통 Go 빌드 시 자동이지만 확실히)
 RUN chmod +x /app/server
