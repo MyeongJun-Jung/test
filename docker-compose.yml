@@ -12,17 +12,28 @@ services:
   #     - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
   #   networks:
   #     - benchnet
-  go_test:
+  elixir_test:
     build:
-      context: ./go-test
+      context: ./elixir-test
       dockerfile: Dockerfile
-    container_name: go_app
+    container_name: elixir_app
     env_file:
       - .env
     ports:
-      - "5004:8080"
+      - "5005:4000"
     networks:
       - benchnet
+  # go_test:
+  #   build:
+  #     context: ./go-test
+  #     dockerfile: Dockerfile
+  #   container_name: go_app
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "5004:8080"
+  #   networks:
+  #     - benchnet
   # nestjs_test:
   #   build:
   #     context: ./nest
