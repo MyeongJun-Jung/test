@@ -11,8 +11,11 @@ func main() {
 	r.Static("/static", "./static")
 
 	// ✅ 루트("/") 요청 시 index.html 반환
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/home", func(c *gin.Context) {
 		c.File("./static/index.html")
+	})
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"hello": "world"})
 	})
 
 	r.Run(":8080")
