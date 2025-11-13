@@ -173,6 +173,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "gunicorn" },
     { name = "sqlalchemy", extra = ["asyncio"] },
+    { name = "websockets" },
 ]
 
 [package.metadata]
@@ -181,6 +182,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.121.0" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.44" },
+    { name = "websockets", specifier = ">=15.0.1" },
 ]
 
 [[package]]
