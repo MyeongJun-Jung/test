@@ -12,17 +12,17 @@ services:
   #     - ./fastapi-test:/app # 코드 변경 시 자동 반영 (개발용)
   #   networks:
   #     - benchnet
-  rust_test:
-    build:
-      context: ./rust-test
-      dockerfile: Dockerfile
-    container_name: rust_app
-    env_file:
-      - .env
-    ports:
-      - "5006:8080"
-    networks:
-      - benchnet
+  # rust_test:
+  #   build:
+  #     context: ./rust-test
+  #     dockerfile: Dockerfile
+  #   container_name: rust_app
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "5006:8080"
+  #   networks:
+  #     - benchnet
   # elixir_test:
   #   build:
   #     context: ./elixir-test
@@ -71,18 +71,18 @@ services:
   #     - /app/node_modules
   #   networks:
   #     - benchnet
-  # spring_test:
-  #   build:
-  #     context: ./demo
-  #     dockerfile: Dockerfile
-  #   container_name: spring_app
-  #   ports:
-  #     - "5003:8080"
-  #   volumes:
-  #     - ./demo:/app # 코드 변경 시 자동 반영 (개발용)
-  #     - /app/build
-  #   networks:
-  #     - benchnet
+  spring_test:
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    container_name: spring_app
+    ports:
+      - "5003:8080"
+    volumes:
+      - ./demo:/app # 코드 변경 시 자동 반영 (개발용)
+      - /app/build
+    networks:
+      - benchnet
 networks:
   benchnet:
     driver: bridge

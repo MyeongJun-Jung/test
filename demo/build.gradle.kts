@@ -23,6 +23,7 @@ extra["springModulithVersion"] = "1.4.4"
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.modulith:spring-modulith-starter-core")
+	implementation("org.springframework.boot:spring-boot-starter-websocket")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
